@@ -1,0 +1,26 @@
+#!/bin/sh
+
+case $1 in
+    "debug")
+        time zig build-exe src/matx.zig --name matx --color on --cache-dir .cache/ -fno-emit-bin -freference-trace=16 -ODebug -fvalgrind
+        if [ $? = 0 ]; then
+            valgrind --leak-check=full --show-leak-kinds=all ./matx
+        fi
+        ;;
+    "release")
+        # zig build-exe --help | less
+        time zig build-exe src/matx.zig --name matx --color on --cache-dir .cache/ -freference-trace=16 -OReleaseSmall -static -fllvm -flld -flto -fstrip -fno-stack-check -fno-stack-protector -fno-unwind-tables # -fno-compiler-rt -fsingle-threaded -fdll-export-fns
+        if [ $? = 0 ]; then
+            strip -R.comment matx
+            rm matx.o
+            ./matx
+        fi
+        ;;
+    "profile")
+        # TODO
+        # strace -cw ./matx
+        ;;
+    *)
+        # TODO
+        ;;
+esac

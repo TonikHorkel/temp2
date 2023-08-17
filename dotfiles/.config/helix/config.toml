@@ -1,0 +1,39 @@
+# https://docs.helix-editor.com/configuration.html
+
+theme = "base16_transparent"
+# theme = "boo_berry"
+# theme = "dark_plus"
+# theme = "dracula"
+# theme = "gruvbox"
+# theme = "gruvbox_dark_hard"
+
+[editor]
+auto-format = false
+line-number = "relative"
+cursorline = true
+cursorcolumn = true
+completion-replace = true
+bufferline = "multiple"
+
+[editor.statusline]
+left = ["mode", "separator", "file-name", "file-modification-indicator"]
+center = ["spinner", "diagnostics"]
+right = ["total-line-numbers", "position-percentage", "position", "separator", "file-encoding", "file-line-ending"] 
+
+[editor.statusline.mode]
+normal = "NORMAL"
+insert = "INSERT"
+select = "SELECT"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.file-picker]
+hidden = false
+ignore = false
+git-ignore = false
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"

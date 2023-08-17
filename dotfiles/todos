@@ -1,0 +1,3 @@
+#!/bin/sh
+
+hx $(rg "todo|fixme|hack" -L.in --color never --no-ignore | fzf | cut -d : -f 1-2)
